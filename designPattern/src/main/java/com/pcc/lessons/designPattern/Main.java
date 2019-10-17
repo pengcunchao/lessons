@@ -9,6 +9,11 @@ import com.pcc.lessons.designPattern.iterator.ArrayList;
 import com.pcc.lessons.designPattern.iterator.Book;
 import com.pcc.lessons.designPattern.iterator.Collection;
 import com.pcc.lessons.designPattern.iterator.Iterator;
+import com.pcc.lessons.designPattern.mediator.AntFarmMediator;
+import com.pcc.lessons.designPattern.mediator.Mediator;
+import com.pcc.lessons.designPattern.state.AloneState;
+import com.pcc.lessons.designPattern.state.Chick;
+import com.pcc.lessons.designPattern.state.VisitorState;
 import com.pcc.lessons.designPattern.strategy.InsertionSorter;
 import com.pcc.lessons.designPattern.strategy.SelectionSorter;
 import com.pcc.lessons.designPattern.strategy.SortAndPrinter;
@@ -78,5 +83,15 @@ public class Main {
         SortAndPrinter<String> lessonsPrinter = new SortAndPrinter<>(new InsertionSorter<>(), lessons);
         scoresPrinter.sortAndPrint();
         lessonsPrinter.sortAndPrint();
+
+        //mediator
+        Mediator mediator = new AntFarmMediator();
+        VisitorState visitorState = new VisitorState(mediator);
+        AloneState aloneState = new AloneState(mediator);
+        ((AntFarmMediator) mediator).setAloneState(aloneState);
+        ((AntFarmMediator) mediator).setAloneState(aloneState);
+        Chick chick = new Chick(aloneState);
+        ((AntFarmMediator) mediator).setChick(chick);
+        chick.invite(new Chick(new AloneState(null)));
     }
 }
