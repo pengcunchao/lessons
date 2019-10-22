@@ -5,12 +5,18 @@ import com.pcc.lessons.designPattern.adapter.FileProperties;
 import com.pcc.lessons.designPattern.composite.Directory;
 import com.pcc.lessons.designPattern.composite.Entry;
 import com.pcc.lessons.designPattern.composite.File;
+import com.pcc.lessons.designPattern.factoryMethod.AppleFactory;
+import com.pcc.lessons.designPattern.factoryMethod.Fruit;
 import com.pcc.lessons.designPattern.iterator.ArrayList;
 import com.pcc.lessons.designPattern.iterator.Book;
 import com.pcc.lessons.designPattern.iterator.Collection;
 import com.pcc.lessons.designPattern.iterator.Iterator;
 import com.pcc.lessons.designPattern.mediator.AntFarmMediator;
 import com.pcc.lessons.designPattern.mediator.Mediator;
+import com.pcc.lessons.designPattern.prototype.Product;
+import com.pcc.lessons.designPattern.prototype.ProductManager;
+import com.pcc.lessons.designPattern.prototype.UnderlinePen;
+import com.pcc.lessons.designPattern.singleton.Singleton;
 import com.pcc.lessons.designPattern.state.AloneState;
 import com.pcc.lessons.designPattern.state.Chick;
 import com.pcc.lessons.designPattern.state.VisitorState;
@@ -32,6 +38,11 @@ import java.util.Properties;
  * 4. Adapter: 在完全不改变现有代码的前提下使现有代码适配新的接口
  * 5. Template Method: 在父类中定义处理流程的框架，子类中实现具体处理
  * 6. Strategy: 将算法和程序的其他部分分离，在程序中以委托的方式使用算法，方便整体替换算法
+ * 7. Mediator: 涉及多个对象之间的关系，不让各个对象之间相互通信，而是增加一个Mediator角色，让他们各自与Mediator通信。对象向Mediator报告，Mediator通知对象执行相应的命令。
+ * 8. State: 不同的state不同的处理，将State封装成对象，和state相关的处理封装在State中。
+ * 9. Factory Method: Template Method用于创建对象。
+ * 10. Singleton: 确保程序在运行的过程中只有唯一的一个实例
+ * 11. Prototype: 根据实例生成实例
  * **/
 public class Main {
     public static void main(String[] args) throws Exception {
@@ -93,5 +104,22 @@ public class Main {
         Chick chick = new Chick(aloneState);
         ((AntFarmMediator) mediator).setChick(chick);
         chick.invite(new Chick(new AloneState(null)));
+
+        System.out.println("the eventId '759_bml_cta_abc123xxx' does not exist.".matches("the eventId.*does not exist."));
+        //factory method
+        Fruit apple = new AppleFactory().create("hongfushi");
+        System.out.println(apple);
+
+        //Singleton
+        Singleton instance1 = Singleton.getInstance();
+        Singleton instance2 = Singleton.getInstance();
+        System.out.println(instance1 == instance2);
+
+        //prototype
+        ProductManager productManager = new ProductManager();
+        Product underLinePen = new UnderlinePen('-');
+
+        productManager.register("underlinePen",underLinePen);
+        productManager.create("underlinePen").use("hello");
     }
 }
