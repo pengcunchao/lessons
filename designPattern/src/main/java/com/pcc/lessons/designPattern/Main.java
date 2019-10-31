@@ -1,7 +1,12 @@
 package com.pcc.lessons.designPattern;
 
+import com.pcc.lessons.designPattern.abstractFactory.IFactory;
+import com.pcc.lessons.designPattern.abstractFactory.XiaomiFactory;
 import com.pcc.lessons.designPattern.adapter.FileIO;
 import com.pcc.lessons.designPattern.adapter.FileProperties;
+import com.pcc.lessons.designPattern.builder.Article;
+import com.pcc.lessons.designPattern.builder.HtmlBuilder;
+import com.pcc.lessons.designPattern.builder.PlainTextBuilder;
 import com.pcc.lessons.designPattern.composite.Directory;
 import com.pcc.lessons.designPattern.composite.Entry;
 import com.pcc.lessons.designPattern.composite.File;
@@ -43,6 +48,8 @@ import java.util.Properties;
  * 9. Factory Method: Template Method用于创建对象。
  * 10. Singleton: 确保程序在运行的过程中只有唯一的一个实例
  * 11. Prototype: 根据实例生成实例
+ * 12. Builder:
+ * 13. Abstract Factory: 将抽象零件组装成抽象产品
  * **/
 public class Main {
     public static void main(String[] args) throws Exception {
@@ -121,5 +128,25 @@ public class Main {
 
         productManager.register("underlinePen",underLinePen);
         productManager.create("underlinePen").use("hello");
+
+        //builder
+        String head = "this is head";
+        String tail = "this is tail";
+        String body = "this is body";
+        Article html=  new HtmlBuilder().head(head).body(body).tail(tail).build();
+        Article text=  new PlainTextBuilder().head(head).body(body).tail(tail).build();
+        System.out.println(html);
+        System.out.println(text);
+
+        //abstract factory
+        IFactory appleFactory = new com.pcc.lessons.designPattern.abstractFactory.AppleFactory();
+        appleFactory.createComputer("air 13");
+        appleFactory.createPhone("6 plus");
+        appleFactory.createWatch("12");
+
+        IFactory xiaomiFactory = new XiaomiFactory();
+        xiaomiFactory.createComputer("mi6");
+        xiaomiFactory.createPhone("mi6");
+        xiaomiFactory.createWatch("mi6");
     }
 }
