@@ -37,10 +37,12 @@ import com.pcc.lessons.designPattern.visitor.Visitor;
 import java.util.Properties;
 
 /**
+ * 创建型模式：factory method, abstract factory, builder, prototype, singleton（对象的创建）
+ * 结构型模式：adapter,proxy,decorator,composite,facade,bridge,flyweight(对象的组成和对象之间的依赖关系)
  * 1. Iterator：提供一种方法顺序的访问一个聚合对象中各个元素，而又不暴露该对象的内部表示；将对集合的遍历与集合的具体实现分类。
  * 2. Composite: 使内容和容器具有一致性，统一内容和容器的处理。一般来说，树结构都可以使用Composite模式
  * 3. Visitor模式：数据结构与数据的处理分离
- * 4. Adapter: 在完全不改变现有代码的前提下使现有代码适配新的接口
+ * 4. Adapter: 在完全不改变现有代码的前提下使现有代码适配新的接口（协调不兼容接口间的工作）
  * 5. Template Method: 在父类中定义处理流程的框架，子类中实现具体处理
  * 6. Strategy: 将算法和程序的其他部分分离，在程序中以委托的方式使用算法，方便整体替换算法
  * 7. Mediator: 涉及多个对象之间的关系，不让各个对象之间相互通信，而是增加一个Mediator角色，让他们各自与Mediator通信。对象向Mediator报告，Mediator通知对象执行相应的命令。
@@ -50,6 +52,7 @@ import java.util.Properties;
  * 11. Prototype: 根据实例生成实例
  * 12. Builder:
  * 13. Abstract Factory: 将抽象零件组装成抽象产品
+ * 14. Bridge: 将类的功能层次结构和实现层次结构解耦。当一个类存在两个独立变化维度时，可以将变化的维度抽象化，再用关联方式将其联系起来。
  * **/
 public class Main {
     public static void main(String[] args) throws Exception {
