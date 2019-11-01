@@ -10,6 +10,8 @@ import com.pcc.lessons.designPattern.builder.PlainTextBuilder;
 import com.pcc.lessons.designPattern.composite.Directory;
 import com.pcc.lessons.designPattern.composite.Entry;
 import com.pcc.lessons.designPattern.composite.File;
+import com.pcc.lessons.designPattern.decorator.Boarder;
+import com.pcc.lessons.designPattern.decorator.Display;
 import com.pcc.lessons.designPattern.factoryMethod.AppleFactory;
 import com.pcc.lessons.designPattern.factoryMethod.Fruit;
 import com.pcc.lessons.designPattern.iterator.ArrayList;
@@ -53,6 +55,7 @@ import java.util.Properties;
  * 12. Builder:
  * 13. Abstract Factory: 将抽象零件组装成抽象产品
  * 14. Bridge: 将类的功能层次结构和实现层次结构解耦。当一个类存在两个独立变化维度时，可以将变化的维度抽象化，再用关联方式将其联系起来。
+ * 15. Decorator:
  * **/
 public class Main {
     public static void main(String[] args) throws Exception {
@@ -151,5 +154,9 @@ public class Main {
         xiaomiFactory.createComputer("mi6");
         xiaomiFactory.createPhone("mi6");
         xiaomiFactory.createWatch("mi6");
+
+        Display display = new com.pcc.lessons.designPattern.decorator.StringDisplay("hello world;\nhello china!\nwow,how wonderful!!!!");
+        Boarder boarder = new Boarder(display,'-','|');
+        boarder.show();
     }
 }
