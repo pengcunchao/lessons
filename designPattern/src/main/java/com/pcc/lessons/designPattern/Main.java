@@ -14,6 +14,8 @@ import com.pcc.lessons.designPattern.decorator.Boarder;
 import com.pcc.lessons.designPattern.decorator.Display;
 import com.pcc.lessons.designPattern.factoryMethod.AppleFactory;
 import com.pcc.lessons.designPattern.factoryMethod.Fruit;
+import com.pcc.lessons.designPattern.flyweight.Connection;
+import com.pcc.lessons.designPattern.flyweight.ConnectionFactory;
 import com.pcc.lessons.designPattern.iterator.ArrayList;
 import com.pcc.lessons.designPattern.iterator.Book;
 import com.pcc.lessons.designPattern.iterator.Collection;
@@ -56,6 +58,8 @@ import java.util.Properties;
  * 13. Abstract Factory: 将抽象零件组装成抽象产品
  * 14. Bridge: 将类的功能层次结构和实现层次结构解耦。当一个类存在两个独立变化维度时，可以将变化的维度抽象化，再用关联方式将其联系起来。
  * 15. Decorator:
+ * 16. flyweight: 通过尽量共享实例来避免new出实例，flyweight对象中只应该存放intrinsic信息，extrinsic信息作为方法参数传递
+ * 17. proxy:
  * **/
 public class Main {
     public static void main(String[] args) throws Exception {
@@ -158,5 +162,13 @@ public class Main {
         Display display = new com.pcc.lessons.designPattern.decorator.StringDisplay("hello world;\nhello china!\nwow,how wonderful!!!!");
         Boarder boarder = new Boarder(display,'-','|');
         boarder.show();
+
+        //flyweight
+        ConnectionFactory connectionFactory = ConnectionFactory.getInstance();
+        Connection connection = connectionFactory.getConnection("jdbc:mysql://192.168.0.105;3306/XXX","root","root","com.mysql.jdbc.mysql");
+        connection.connect();
+
+        Connection connection1 = connectionFactory.getConnection("jdbc:mysql://192.168.0.105;3306/XXX","root","root","com.mysql.jdbc.mysql");
+        connection1.connect();
     }
 }
