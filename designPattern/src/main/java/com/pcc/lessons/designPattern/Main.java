@@ -12,6 +12,7 @@ import com.pcc.lessons.designPattern.composite.Entry;
 import com.pcc.lessons.designPattern.composite.File;
 import com.pcc.lessons.designPattern.decorator.Boarder;
 import com.pcc.lessons.designPattern.decorator.Display;
+import com.pcc.lessons.designPattern.facade.SecurityFacade;
 import com.pcc.lessons.designPattern.factoryMethod.AppleFactory;
 import com.pcc.lessons.designPattern.factoryMethod.Fruit;
 import com.pcc.lessons.designPattern.flyweight.Connection;
@@ -60,6 +61,7 @@ import java.util.Properties;
  * 15. Decorator:
  * 16. flyweight: 通过尽量共享实例来避免new出实例，flyweight对象中只应该存放intrinsic信息，extrinsic信息作为方法参数传递
  * 17. proxy:
+ * 18. facade模式：
  * **/
 public class Main {
     public static void main(String[] args) throws Exception {
@@ -170,5 +172,10 @@ public class Main {
 
         Connection connection1 = connectionFactory.getConnection("jdbc:mysql://192.168.0.105;3306/XXX","root","root","com.mysql.jdbc.mysql");
         connection1.connect();
+
+        //facade
+        SecurityFacade securityFacade = SecurityFacade.getInstance();
+        securityFacade.alarm();
+        securityFacade.monitor();
     }
 }
