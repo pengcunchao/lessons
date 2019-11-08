@@ -7,6 +7,11 @@ import com.pcc.lessons.designPattern.adapter.FileProperties;
 import com.pcc.lessons.designPattern.builder.Article;
 import com.pcc.lessons.designPattern.builder.HtmlBuilder;
 import com.pcc.lessons.designPattern.builder.PlainTextBuilder;
+import com.pcc.lessons.designPattern.command.Command;
+import com.pcc.lessons.designPattern.command.DrawCommand;
+import com.pcc.lessons.designPattern.command.Drawable;
+import com.pcc.lessons.designPattern.command.MacroCommand;
+import com.pcc.lessons.designPattern.command.RadioDrawer;
 import com.pcc.lessons.designPattern.composite.Directory;
 import com.pcc.lessons.designPattern.composite.Entry;
 import com.pcc.lessons.designPattern.composite.File;
@@ -177,5 +182,14 @@ public class Main {
         SecurityFacade securityFacade = SecurityFacade.getInstance();
         securityFacade.alarm();
         securityFacade.monitor();
+
+        //command
+        Drawable drawer = new RadioDrawer(10);
+        Command command1 = new DrawCommand(drawer,50,50);
+        Command command2 = new DrawCommand(drawer,100,100);
+        Command commands = new MacroCommand();
+        commands.add(command1);
+        commands.add(command2);
+        commands.execute();
     }
 }
