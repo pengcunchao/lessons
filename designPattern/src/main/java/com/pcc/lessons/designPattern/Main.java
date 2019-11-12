@@ -28,6 +28,7 @@ import com.pcc.lessons.designPattern.iterator.Collection;
 import com.pcc.lessons.designPattern.iterator.Iterator;
 import com.pcc.lessons.designPattern.mediator.AntFarmMediator;
 import com.pcc.lessons.designPattern.mediator.Mediator;
+import com.pcc.lessons.designPattern.memento.Gamer;
 import com.pcc.lessons.designPattern.prototype.Product;
 import com.pcc.lessons.designPattern.prototype.ProductManager;
 import com.pcc.lessons.designPattern.prototype.UnderlinePen;
@@ -51,6 +52,7 @@ import com.pcc.lessons.designPattern.visitor.Reader;
 import com.pcc.lessons.designPattern.visitor.Visitor;
 
 import java.util.Properties;
+import java.util.Random;
 
 /**
  * 创建型模式：factory method, abstract factory, builder, prototype, singleton（对象的创建）
@@ -214,6 +216,24 @@ public class Main {
         noSupport.support(trouble1);
         noSupport.support(trouble2);
         noSupport.support(trouble3);
+
+        //memento
+        Random random = new Random();
+        int init = random.nextInt(1000);
+        Gamer gamer = new Gamer(init,init,init,init);
+        Gamer.Memento memento = gamer.save();
+        System.out.println(gamer);
+        for(int i = 0; i< 1000;i ++){
+            if(gamer.isLive()){
+                gamer.decreaseOne();
+            }
+            else {
+                System.out.println("game is over, restore the game");
+                gamer.restore(memento);
+                System.out.println(gamer);
+            }
+
+        }
 
     }
 }
