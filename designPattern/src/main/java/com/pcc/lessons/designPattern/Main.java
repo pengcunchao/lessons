@@ -31,6 +31,12 @@ import com.pcc.lessons.designPattern.mediator.Mediator;
 import com.pcc.lessons.designPattern.prototype.Product;
 import com.pcc.lessons.designPattern.prototype.ProductManager;
 import com.pcc.lessons.designPattern.prototype.UnderlinePen;
+import com.pcc.lessons.designPattern.responsibilityChain.EvenSupport;
+import com.pcc.lessons.designPattern.responsibilityChain.LimitSupport;
+import com.pcc.lessons.designPattern.responsibilityChain.NoSupport;
+import com.pcc.lessons.designPattern.responsibilityChain.OddSupport;
+import com.pcc.lessons.designPattern.responsibilityChain.Support;
+import com.pcc.lessons.designPattern.responsibilityChain.Trouble;
 import com.pcc.lessons.designPattern.singleton.Singleton;
 import com.pcc.lessons.designPattern.state.AloneState;
 import com.pcc.lessons.designPattern.state.Chick;
@@ -191,5 +197,23 @@ public class Main {
         commands.add(command1);
         commands.add(command2);
         commands.execute();
+
+        //responsibility chain
+        Support noSupport = new NoSupport("noSupport");
+        Support oddSupport = new OddSupport("oddSupport");
+        Support evenSupportSupport = new EvenSupport("evenSupport");
+        Support limitSupport = new LimitSupport("limitSupport", 5,100);
+
+        noSupport.setNextAndReturn(limitSupport).setNextAndReturn(evenSupportSupport).setNextAndReturn(oddSupport);
+
+        Trouble trouble = new Trouble(2);
+        Trouble trouble1 = new Trouble(10);
+        Trouble trouble2 = new Trouble(101);
+        Trouble trouble3 = new Trouble(108);
+        noSupport.support(trouble);
+        noSupport.support(trouble1);
+        noSupport.support(trouble2);
+        noSupport.support(trouble3);
+
     }
 }
