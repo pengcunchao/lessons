@@ -29,6 +29,10 @@ import com.pcc.lessons.designPattern.iterator.Iterator;
 import com.pcc.lessons.designPattern.mediator.AntFarmMediator;
 import com.pcc.lessons.designPattern.mediator.Mediator;
 import com.pcc.lessons.designPattern.memento.Gamer;
+import com.pcc.lessons.designPattern.observer.FireMonitor;
+import com.pcc.lessons.designPattern.observer.FireMonitorObserver;
+import com.pcc.lessons.designPattern.observer.Observable;
+import com.pcc.lessons.designPattern.observer.Observer;
 import com.pcc.lessons.designPattern.prototype.Product;
 import com.pcc.lessons.designPattern.prototype.ProductManager;
 import com.pcc.lessons.designPattern.prototype.UnderlinePen;
@@ -233,6 +237,14 @@ public class Main {
                 System.out.println(gamer);
             }
 
+        }
+
+        //observer
+        Observer<FireMonitor> observer = new FireMonitorObserver();
+        Observable firemonitor = new FireMonitor("zhongshan streeet, hk");
+        firemonitor.addObserver(observer);
+        for(int i = 0; i < 100; i++){
+            firemonitor.execute();
         }
 
     }
